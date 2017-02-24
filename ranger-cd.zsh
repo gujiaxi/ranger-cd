@@ -1,6 +1,6 @@
 function ranger-cd {
     tempfile="$(mktemp -t tmp.XXXXXX)"
-    /usr/local/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    ranger --choosedir="$tempfile" "${@:-$(pwd)}"
     test -f "$tempfile" &&
     if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
         cd -- "$(cat "$tempfile")"
@@ -8,4 +8,4 @@ function ranger-cd {
     rm -f -- "$tempfile"
 }
 
-bindkey -s '^o' 'ranger-cd^M'
+bindkey -s '^o' 'ranger-cd\n'
